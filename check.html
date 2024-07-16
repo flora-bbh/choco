@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initialgitgiscale=1.0">
+    <title>급식 순서 알리미-이번 주 급식 순서 확인</title>
+    <style>
+        body{
+            background-image: url(알람-티켓.jpg);
+            background-repeat : no-repeat;
+            background-size : contain;
+            width : 100vw;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; 
+        }
+        h1 {
+            font-size: 2em;
+            color: rgb(255, 0, 170);
+            text-align: center;
+            position: absolute;
+            top: 20%;
+            left: 4%;
+            background-color: rgb(255,227,229);
+            border: 10px;
+            border-color: white;
+            border-radius: 15px;
+            padding: 5px;
+        }
+
+        h2 {
+            font-size: 0.8em;
+            color: rgb(0, 0, 0);
+            position: absolute;
+            top: 44%;
+            left: 15.3%;
+            right: 58%;
+        }
+        .back-button {
+            background-color: rgb(255,227,229);
+            padding: 10px 20px;
+            position: absolute;
+            border-color: black;
+            border-radius: 5px;
+            color: black;
+            font-size: 24px;
+            cursor: pointer;
+            margin-top: 20px;
+            left: 15%;
+            top: 55%;
+        }
+        .back-button:hover {
+            background-color: rgb(255,227,229);
+            color: black;
+        }
+        #ticket{
+            position: absolute;
+            left: 20%;
+            color: black;
+            top: 36.5%;
+            
+        }
+    </style>
+</head>
+<body>
+    <h1>이번주 급식 순서</h1>
+    <p id="ticket">급식 순서표</p>
+    <div class = "textonimage">
+    <h2>
+    <script>
+        const today = new Date();
+        const dayOfWeek = today.getDay()
+        const days = ["일","월","화","수","목","금","토"]
+        const dayOfWeekString = days[dayOfWeek]
+        const classnumber = ["7반","8반","9반","10반","11반","1반","2반","3반","4반","5반","6반"]
+        for(var i = 0; i<=10; i++){
+                document.write(classnumber[i]+"\u00A0")
+            }
+        function shiftClassNumber() {
+            if (dayOfWeekString === "일") {
+                const firstElement = classnumber.shift();
+                classnumber.push(firstElement);
+            }
+        }
+        setInterval(shiftClassNumber, 7 * 24 * 60 * 60 * 1000);
+    </script></h2></div>
+    <button class="back-button" type="button" onclick="location.href='alarm.html'">돌아가기</button>
+</body>
+</html>
