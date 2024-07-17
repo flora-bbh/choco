@@ -8,7 +8,7 @@
         body{
             background-image: url(핸드폰.jpg);
             background-repeat : no-repeat;
-            background-size : contain;
+            background-size : cover;
             width : 100vw;
             margin: 0;
             padding: 0;
@@ -23,7 +23,7 @@
             margin: 20px;
             font-size: 1em;
             background-color: white;
-            border: 1px
+            border: 1px;
             padding: 20px;
             display: inline-block;
             width:1%
@@ -33,35 +33,36 @@
 
 
         .check-button {
-            
+            background-color: rgba(0,0,0,0);
+            border: 0;
             color: black;
             font-size: 17px;
             cursor: pointer;
             position : absolute;
-            bottom: 4em;
-            right: 5em;    
+            width: 100px;
+            
         }
         #clock {
             color: skyblue;
-            font-size: 1em; /* 시계 글자 크기 */
+            font-size: 1.8em; /* 시계 글자 크기 */
             margin-bottom: 20px; /* 시계 아래 여백 */
             background: white;
             padding: 2%;
             border-radius: 5px;
             position : absolute;
-            left:9%;
             top : 18%
         }
         #countdown {
             display: none;
             color: gray;
-            font-size: 0.5em; /* 카운트다운 글자 크기 */
+            font-size: 1em; /* 카운트다운 글자 크기 */
             margin-top: 0; /* 카운트다운 상단 여백 */
             background: white;
             padding: 1%;
             border-radius: 15px;
             position : absolute;
-            top : 33%
+            top : 30%;
+            
         }
         .image{
             position : absolute;
@@ -69,14 +70,14 @@
       
         .textonimage{
             position : absolute;
-            top : 55%;
+            top : 28em;
             left : 50%;
             transform : translate(-50%, -50%);
         }
         .checkonimage{
             position : absolute;
-            top : 99%;
-            left : 50%;
+            top : 93%;
+            left : 18%;
             transform : translate(-150%, -50%);
         }
         .creater{
@@ -89,7 +90,6 @@
             text-align : left;
             transform : translate(-50%, -50%);
         }
-        
         
         
 
@@ -148,8 +148,8 @@
         setInterval(clock, 1000); // 1초마다 실행
         
         const totalClasses = 11; // 한 주에 배식을 받는 총 반의 수
-        const startHour = 12;
-        const startMinute = 38; 
+        const startHour = 10;
+        const startMinute = 5; 
         const endHour = 13;
         const endMinute = 50;
         const intervalMinutes = 2;
