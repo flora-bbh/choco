@@ -1,0 +1,233 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1, user-scalable=no">
+        <title>급식 순서 알리미</title> 
+    </head>
+    <style>
+        body{
+            background-image: url(핸드폰.jpg);
+            background-repeat : no-repeat;
+            background-size : cover;
+            width : 100vw;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; 
+        }
+
+        .info {
+            margin: 20px;
+            font-size: 1em;
+            background-color: white;
+            border: 1px;
+            padding: 20px;
+            display: inline-block;
+            width:1%
+            
+        }
+
+
+
+        .check-button {
+            background-color: rgba(0,0,0,0);
+            border: 0;
+            color: black;
+            font-size: 17px;
+            cursor: pointer;
+            position : absolute;
+            width: 100px;
+            
+        }
+        #clock {
+            color: skyblue;
+            font-size: 1.8em; /* 시계 글자 크기 */
+            margin-bottom: 20px; /* 시계 아래 여백 */
+            background: white;
+            padding: 2%;
+            border-radius: 5px;
+            position : absolute;
+            top : 18%
+        }
+        #countdown {
+            display: none;
+            color: gray;
+            font-size: 1em; /* 카운트다운 글자 크기 */
+            margin-top: 0; /* 카운트다운 상단 여백 */
+            background: white;
+            padding: 1%;
+            border-radius: 15px;
+            position : absolute;
+            top : 30%;
+            
+        }
+        .image{
+            position : absolute;
+        }
+      
+        .textonimage{
+            position : absolute;
+            top : 28em;
+            left : 50%;
+            transform : translate(-50%, -50%);
+        }
+        .checkonimage{
+            position : absolute;
+            top : 93%;
+            left : 18%;
+            transform : translate(-150%, -50%);
+        }ㅇ
+        .creater{
+            color: gray; 
+            font-size: 0.5em; 
+            position : fixed;
+            margin-bottom : 0px;
+            top : 99%;     
+            width : 100%; 
+            text-align : left;
+            transform : translate(-50%, -50%);
+        }
+        
+        
+
+
+    </style>
+    <body>
+        <h1 id="clock" >clock</h1>
+        <p id="countdown"></p>
+    <script>
+        var Target = document.getElementById("clock");
+        var TargetCountdown = document.getElementById("countdown");
+        
+        function clock() {
+            var time = new Date();
+
+            var month = time.getMonth();
+            var date = time.getDate();
+            var day = time.getDay();
+            var week = ['일', '월', '화', '수', '목', '금', '토'];
+
+            var hours = time.getHours();
+            var minutes = time.getMinutes();
+            var seconds = time.getSeconds();
+
+            var timeString = `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+            
+            
+            var targetTime = new Date();
+            targetTime.setHours(12);
+            targetTime.setMinutes(50);
+            targetTime.setSeconds(0);
+
+            if (time < targetTime) {
+                var timeDiff = targetTime - time;
+                var hoursLeft = Math.floor(timeDiff / (1000 * 60 * 60));
+                timeDiff -= hoursLeft * (1000 * 60 * 60);
+                var minutesLeft = Math.floor(timeDiff / (1000 * 60));
+                timeDiff -= minutesLeft * (1000 * 60);
+                var secondsLeft = Math.floor(timeDiff / 1000);
+
+                TargetCountdown.innerHTML = 
+                `점심시간까지 남은 시간: ${hoursLeft}시간 ${minutesLeft}분 ${secondsLeft}초`;
+                
+                TargetCountdown.style.display = 'block';
+            } else {
+                TargetCountdown.innerHTML = '';
+                TargetCountdown.style.display = 'none';
+            }
+
+        Target.innerHTML = 
+        `${month + 1}월 ${date}일 ${week[day]}요일 ` +
+        `<span style="color:pink;">${timeString}</span>`;
+        }
+
+        clock();
+        setInterval(clock, 1000); // 1초마다 실행
+        
+        const totalClasses = 11; // 한 주에 배식을 받는 총 반의 수
+        const startHour = 10;
+        const startMinute = 5; 
+        const endHour = 13;
+        const endMinute = 50;
+        const intervalMinutes = 2;
+
+        // 이번 주 첫 번째 반 설정 (예: 1이면 1반, 2이면 2반 시작)
+        let thisWeekFirstClass = 7; // 예시: 이번 주는 2반부터 시작
+
+        let isFinishedMessageDisplayed = false; // '급식 배식이 끝났습니다.' 메시지가 이미 표시되었는지 여부
+        let lastClassDisplayedTime = null; // 마지막으로 표시된 배식 순서의 시간
+
+        function updateClasses() {
+            const now = new Date();
+            const startTime = new Date();
+            startTime.setHours(startHour, startMinute, 0, 0);
+            const endTime = new Date();
+            endTime.setHours(endHour, endMinute, 0, 0);
+
+            if (now < startTime || now >= endTime) {
+                document.getElementById('current-class').textContent = '';
+                document.getElementById('next-class').textContent = '';
+                document.getElementById('finished-message').textContent = '';
+                return;
+            }
+
+            const elapsedMinutes = Math.floor((now - startTime) / 60000);
+            const totalSlots = Math.floor(elapsedMinutes / intervalMinutes);
+            const currentIndex = (totalSlots + (thisWeekFirstClass - 1)) % totalClasses;
+            const nextIndex = (currentIndex + 1) % totalClasses;
+            const lastIndex = (thisWeekFirstClass - 1 + totalClasses - 1) % totalClasses;
+
+            if (currentIndex === lastIndex && !isFinishedMessageDisplayed) {
+                // 마지막 배식 순서일 때
+                document.getElementById('current-class').textContent = `현재 배식 중인 반: ${currentIndex + 1}반`;
+                document.getElementById('next-class').textContent = '';
+                isFinishedMessageDisplayed = true;
+                lastClassDisplayedTime = now; // 마지막 배식 순서 표시 시간 기록
+            } else if (isFinishedMessageDisplayed && (now - lastClassDisplayedTime) < 120000) {
+                // 마지막 배식 순서가 표시된 후 2분 이내에 있을 경우
+                document.getElementById('current-class').textContent = `현재 배식 중인 반: ${lastIndex + 1}반`;
+                document.getElementById('next-class').textContent = '';
+                document.getElementById('finished-message').textContent = '';
+            } else if (isFinishedMessageDisplayed && (now - lastClassDisplayedTime) >= 120000) {
+                // 마지막 배식 순서가 표시된 후 2분 이상 지났을 경우
+                document.getElementById('current-class').textContent = '';
+                document.getElementById('next-class').textContent = '';
+                document.getElementById('finished-message').textContent = '급식 배식이 끝났습니다.';
+            } else {
+                // 일반적인 경우
+                document.getElementById('current-class').textContent = `현재 배식 중인 반: ${currentIndex + 1}반`;
+                if (currentIndex !== lastIndex) {
+                    document.getElementById('next-class').textContent = `다음에 배식 받을 반: ${nextIndex + 1}반`;
+                } else {
+                    document.getElementById('next-class').textContent = '';
+                }
+                document.getElementById('finished-message').textContent = '';
+            }
+        }
+
+        window.onload = function() {
+            updateClasses();
+            setInterval(updateClasses, 1000); // 1초마다 업데이트
+        };
+    </script>
+    
+    <div calss = "image">
+        <div class = "textonimage">
+            <div id="current-class"></div>
+        <br>
+            <div id="next-class"></div>
+            <div id="finished-message"></div>
+        </div>
+        <div class = "checkonimage">
+            <button class="check-button" type="button" onclick="location.href='check.html'">급식순서</button>
+        </div>
+        <div class = "creater">
+            <p>제작자 : 30704 김예진 30724 황채리 31117 이하연</p>
+        </div>
+    </div>
+        <br>
+    </body>
+    </html>
