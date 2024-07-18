@@ -19,21 +19,10 @@
             height: 100vh; 
         }
 
-        .info {
-            margin: 20px;
-            font-size: 1em;
-            background-color: white;
-            border: 1px;
-            padding: 20px;
-            display: inline-block;
-            width:1%
-            
-        }
-
-
+        
 
         .check-button {
-            background-color: rgba(0,0,0,0);
+            background-color: white;
             border: 0;
             color: black;
             font-size: 17px;
@@ -44,24 +33,24 @@
         }
         #clock {
             color: skyblue;
-            font-size: 1.8em; /* 시계 글자 크기 */
+            font-size: 8vw; /* 시계 글자 크기 */
             margin-bottom: 20px; /* 시계 아래 여백 */
             background: white;
             padding: 2%;
             border-radius: 5px;
             position : absolute;
-            top : 18%
+            top : 8%;
         }
         #countdown {
             display: none;
             color: gray;
-            font-size: 1em; /* 카운트다운 글자 크기 */
+            font-size: 4vw; /* 카운트다운 글자 크기 */
             margin-top: 0; /* 카운트다운 상단 여백 */
             background: white;
             padding: 1%;
             border-radius: 15px;
             position : absolute;
-            top : 30%;
+            top : 37vw;
             
         }
         .image{
@@ -70,14 +59,13 @@
       
         .textonimage{
             position : absolute;
-            top : 28em;
             left : 50%;
             transform : translate(-50%, -50%);
         }
         .checkonimage{
             position : absolute;
-            top : 93%;
-            left : 18%;
+            left: 38%;
+            top : 125vw;
             transform : translate(-150%, -50%);
         }
         
@@ -91,7 +79,16 @@
             text-align : left;
             transform : translate(-50%, -50%);
         }
-        
+        .main_image {
+            position: relative;
+  }
+  .main_image_text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate( -50%, -50% );
+    color: white;
+  }
         
 
 
@@ -149,8 +146,8 @@
         setInterval(clock, 1000); // 1초마다 실행
         
         const totalClasses = 11; // 한 주에 배식을 받는 총 반의 수
-        const startHour = 10;
-        const startMinute = 5; 
+        const startHour = 11;
+        const startMinute = 50; 
         const endHour = 13;
         const endMinute = 50;
         const intervalMinutes = 2;
@@ -215,19 +212,25 @@
         };
     </script>
     
+    </div>
     <div calss = "image">
-        <div class = "textonimage">
-            <div id="current-class"></div>
-        <br>
-            <div id="next-class"></div>
-            <div id="finished-message"></div>
-        </div>
         <div class = "checkonimage">
             <button class="check-button" type="button" onclick="location.href='check.html'">급식순서</button>
         </div>
         <div class = "creater">
             <p>제작자 : 30704 김예진 30724 황채리 31117 이하연</p>
         </div>
+        <img src = "핑크워드.jpg" alt = "화면" style="max-width:50%;height:auto;"     >      
+        <h1 class="핑크워드.jpg_text" style="font-size:15px">
+            <div class = "textonimage">
+                <div id="current-class"></div>
+            <br>
+                <div id="next-class"></div>
+                <div id="finished-message"></div>
+            </div></h1>
+    
+        </div>
+
     </div>
         <br>
     </body>
