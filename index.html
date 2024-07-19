@@ -3,10 +3,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1, user-scalable=no">
         <title>급식 순서 알리미</title> 
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
     </head>
     <style>
         body{
-            background-image: url(핸드폰.jpg);
+            background-image: url(워드핸드폰.jpg);
             background-repeat : no-repeat;
             background-size : cover;
             width : 100vw;
@@ -19,17 +20,28 @@
             height: 100vh; 
         }
 
-        
+        .main_image{
+            position:relative;
+
+        }
+
+        .checkonimage {
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-45%, 80%);
+        }
 
         .check-button {
             background-color: white;
-            border: 0;
+            border: none;
             color: black;
-            font-size: 17px;
+            font-size: 5vw;
             cursor: pointer;
+            max-width: 100%;
+            transform : translate(19%, 50%);
             position : absolute;
-            width: 100px;
-            
+            top : 69%;
         }
         #clock {
             color: skyblue;
@@ -53,21 +65,14 @@
             top : 37vw;
             
         }
-        .image{
-            position : absolute;
-        }
+        
       
         .textonimage{
             position : absolute;
             left : 50%;
             transform : translate(-50%, -50%);
         }
-        .checkonimage{
-            position : absolute;
-            left: 38%;
-            top : 125vw;
-            transform : translate(-150%, -50%);
-        }
+        
         
         .creater{
             color: gray; 
@@ -79,23 +84,15 @@
             text-align : left;
             transform : translate(-50%, -50%);
         }
-        .main_image {
-            position: relative;
-  }
-  .main_image_text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate( -50%, -50% );
-    color: white;
-  }
+       
         
-
-
+        #current-class, #next-class, #finished-message {
+            margin-bottom : 10px;
+        }
     </style>
     <body>
-        <h1 id="clock" >clock</h1>
-        <p id="countdown"></p>
+    <h1 id="clock" >clock</h1>
+    <p id="countdown"></p>
     <script>
         var Target = document.getElementById("clock");
         var TargetCountdown = document.getElementById("countdown");
@@ -146,9 +143,9 @@
         setInterval(clock, 1000); // 1초마다 실행
         
         const totalClasses = 11; // 한 주에 배식을 받는 총 반의 수
-        const startHour = 11;
+        const startHour = 14;
         const startMinute = 50; 
-        const endHour = 13;
+        const endHour = 16;
         const endMinute = 50;
         const intervalMinutes = 2;
 
@@ -211,27 +208,18 @@
             setInterval(updateClasses, 1000); // 1초마다 업데이트
         };
     </script>
-    
     </div>
-    <div calss = "image">
-        <div class = "checkonimage">
-            <button class="check-button" type="button" onclick="location.href='check.html'">급식순서</button>
-        </div>
-        <div class = "creater">
-            <p>제작자 : 30704 김예진 30724 황채리 31117 이하연</p>
-        </div>
-        <img src = "핑크워드.jpg" alt = "화면" style="max-width:50%;height:auto;"     >      
-        <h1 class="핑크워드.jpg_text" style="font-size:15px">
-            <div class = "textonimage">
-                <div id="current-class"></div>
-            <br>
-                <div id="next-class"></div>
-                <div id="finished-message"></div>
-            </div></h1>
-    
-        </div>
-
+    <button class="check-button" type="button" onclick="location.href='check.html'">급식순서</button>
+    <div class = "creater">
+        <p>제작자 : 30704 김예진 30724 황채리 31117 이하연</p>
     </div>
+    <div class = "checkonimage" style="font-size:18px">
+        <div id="current-class"></div>
         <br>
+        <div id="next-class"></div>
+        <div id="finished-message"></div>
+    </div>
+    </div>
     </body>
     </html>
+    
