@@ -20,14 +20,9 @@
             height: 100vh; 
         }
 
-        .main_image{
-            position:relative;
-
-        }
-
         .checkonimage {
             position:absolute;
-            top:50%;
+            top:40%;
             left:50%;
             transform: translate(-45%, 80%);
         }
@@ -51,48 +46,38 @@
             padding: 2%;
             border-radius: 5px;
             position : absolute;
-            top : 8%;
+            top : 3%;
         }
         #countdown {
-            display: none;
             color: gray;
-            font-size: 4vw; /* 카운트다운 글자 크기 */
-            margin-top: 0; /* 카운트다운 상단 여백 */
+            font-size: 6vw;
             background: white;
-            padding: 1%;
-            border-radius: 15px;
+            padding: 2%;
+            border-radius: 3px;
             position : absolute;
-            top : 37vw;
-            
+            top : 30%;
+            left : 40%;
         }
-        
-      
-        .textonimage{
-            position : absolute;
-            left : 50%;
-            transform : translate(-50%, -50%);
-        }
-        
         
         .creater{
             color: gray; 
-            font-size: 0.5em; 
-            position : fixed;
+            font-size: 4vw; 
+            position : absolute;
             margin-bottom : 0px;
             top : 99%;     
             width : 100%; 
-            text-align : left;
-            transform : translate(-50%, -50%);
+            text-align : center;
+            left : 12%;
+            transform : translate(-9%, -60%);
         }
        
-        
         #current-class, #next-class, #finished-message {
             margin-bottom : 10px;
         }
     </style>
     <body>
-    <h1 id="clock" >clock</h1>
-    <p id="countdown"></p>
+    <h1 id="clock">#clcok</h1>
+    <h1 id="countdown">#countdown</h1>
     <script>
         var Target = document.getElementById("clock");
         var TargetCountdown = document.getElementById("countdown");
@@ -208,17 +193,15 @@
             setInterval(updateClasses, 1000); // 1초마다 업데이트
         };
     </script>
-    </div>
     <button class="check-button" type="button" onclick="location.href='check.html'">급식순서</button>
-    <div class = "creater">
-        <p>제작자 : 30704 김예진 30724 황채리 31117 이하연</p>
-    </div>
-    <div class = "checkonimage" style="font-size:18px">
+    <div class = "checkonimage" style="font-size: 5vw">
         <div id="current-class"></div>
         <br>
         <div id="next-class"></div>
         <div id="finished-message"></div>
     </div>
+    <div class = "creater">
+        <p>제작자 : 30704 김예진 30724 황채리 31117 이하연</p>
     </div>
     </body>
     </html>
