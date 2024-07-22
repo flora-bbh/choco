@@ -68,7 +68,7 @@
         const dayOfWeek = today.getDay()
         const days = ["일","월","화","수","목","금","토"]
         const dayOfWeekString = days[dayOfWeek]
-        const classnumber = ["7반","8반","9반","10반","11반","1반","2반","3반","4반","5반","6반"]
+        const classnumber = ["8반","9반","10반","11반","1반","2반","3반","4반","5반","6반","7반",]
         for(var i = 0; i<=10; i++){
                 document.write(classnumber[i]+"\u00A0")
             }
@@ -78,8 +78,8 @@
                 classnumber.push(firstElement);
             }
         }
-        setInterval(shiftClassNumber, 7 * 24 * 60 * 60 * 1000);
-    </script></h2></div>
+    </script>
+    </h2></div>
     <button class="back-button" type="button" onclick="location.href='index.html'">돌아가기</button>
 </body>
 </html>
